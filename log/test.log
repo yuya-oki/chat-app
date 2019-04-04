@@ -1,0 +1,798 @@
+  [1m[35m (42.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS `chat-space_test`[0m
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE DATABASE `chat-space_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35m (86.4ms)[0m  [1m[35mCREATE TABLE `group_users` (`id` int AUTO_INCREMENT PRIMARY KEY, `group_id` int, `user_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_group_users_on_group_id` USING btree (`group_id`),  INDEX `index_group_users_on_user_id` USING btree (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (40.0ms)[0m  [1m[35mCREATE TABLE `groups` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255) NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (44.7ms)[0m  [1m[35mCREATE TABLE `messages` (`id` int AUTO_INCREMENT PRIMARY KEY, `content` varchar(255), `image` varchar(255), `group_id` int, `user_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_messages_on_group_id` USING btree (`group_id`),  INDEX `index_messages_on_user_id` USING btree (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (44.0ms)[0m  [1m[35mCREATE TABLE `users` (`id` int AUTO_INCREMENT PRIMARY KEY, `name` varchar(255) NOT NULL, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, UNIQUE INDEX `index_users_on_email` USING btree (`email`),  INDEX `index_users_on_name` USING btree (`name`), UNIQUE INDEX `index_users_on_reset_password_token` USING btree (`reset_password_token`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (87.5ms)[0m  [1m[35mALTER TABLE `group_users` ADD CONSTRAINT `fk_rails_a9d5f48449`
+FOREIGN KEY (`group_id`)
+  REFERENCES `groups` (`id`)
+[0m
+  [1m[35m (76.6ms)[0m  [1m[35mALTER TABLE `group_users` ADD CONSTRAINT `fk_rails_1486913327`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (79.2ms)[0m  [1m[35mALTER TABLE `messages` ADD CONSTRAINT `fk_rails_841b0ae6ac`
+FOREIGN KEY (`group_id`)
+  REFERENCES `groups` (`id`)
+[0m
+  [1m[35m (71.2ms)[0m  [1m[35mALTER TABLE `messages` ADD CONSTRAINT `fk_rails_273a25a7a6`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (26.1ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT version FROM `schema_migrations`[0m
+  [1m[35m (2.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20190306102002)[0m
+  [1m[35m (3.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20190306080654),
+(20190227093916),
+(20190306080710);
+
+[0m
+  [1m[35m (57.6ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'test', '2019-03-12 12:19:52', '2019-03-12 12:19:52')[0m
+  [1m[35m (41.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (2.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'christiana@hotmail.com' LIMIT 1[0m
+  [1m[35mSQL (41.1ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('山崎', 'christiana@hotmail.com', '$2a$04$Tgyfzg4FOBkrP6t9FQmUheTyBH42nEetCaNx9RWoIefBlpyXHmwae', '2019-03-12 16:09:09', '2019-03-12 16:09:09')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('秋田県 ghosts', '2019-03-12 16:09:09', '2019-03-12 16:09:09')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"1"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.5ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 1 LIMIT 1[0m
+Completed 500 Internal Server Error in 114ms (ActiveRecord: 47.8ms)
+  [1m[35m (3.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'branden_ward@hotmail.com' LIMIT 1[0m
+  [1m[35mSQL (2.7ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('西村', 'branden_ward@hotmail.com', '$2a$04$UZXlgrVVvs7DxxwgGfj2puv04UEV6xykB/VfvigBF4jhsABA9hZfm', '2019-03-12 16:09:09', '2019-03-12 16:09:09')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('山形県 whales', '2019-03-12 16:09:09', '2019-03-12 16:09:09')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"2"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 2 LIMIT 1[0m
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.5ms)
+  [1m[35m (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'mercedes@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('森', 'mercedes@yahoo.com', '$2a$04$iSjO7MGbZErTxIQOQ1VnauL0COI6PCsEFUXIr3I6U1bODiMx6qI5a', '2019-03-12 16:09:09', '2019-03-12 16:09:09')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('神奈川県 vampires', '2019-03-12 16:09:09', '2019-03-12 16:09:09')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 3 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 3 LIMIT 1[0m
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.6ms)
+  [1m[35m (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (2.8ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('熊本県 elves', '2019-03-12 16:09:09', '2019-03-12 16:09:09')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"4"}
+Completed 401 Unauthorized in 9ms (ActiveRecord: 0.0ms)
+  [1m[35m (40.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'dexter.glover@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('橋本', 'dexter.glover@yahoo.com', '$2a$04$/kpufEaSHh1giznuEpVsJ.NF/hbESjJB7cfWkgm71YLDi11pmvKKS', '2019-03-12 16:41:44', '2019-03-12 16:41:44')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('神奈川県 sorcerors', '2019-03-12 16:41:44', '2019-03-12 16:41:44')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"5"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 4 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.5ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 5 LIMIT 1[0m
+Completed 500 Internal Server Error in 96ms (ActiveRecord: 26.6ms)
+  [1m[35m (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'judson@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (2.9ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('野口', 'judson@yahoo.com', '$2a$04$l.FpamCjqnioVEKYoKacOeyiG8m9sfeIR9sAje2Mss0j/x.pGAa6e', '2019-03-12 16:41:44', '2019-03-12 16:41:44')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('鹿児島県 ogres', '2019-03-12 16:41:44', '2019-03-12 16:41:44')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"6"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 5 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 6 LIMIT 1[0m
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.6ms)
+  [1m[35m (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'bell@hotmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('今井', 'bell@hotmail.com', '$2a$04$qzwJsE3knLkq4cZmoax80up1gv4lrbUxJ.h3Yo535qO2Fu3OuYV8a', '2019-03-12 16:41:44', '2019-03-12 16:41:44')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('滋賀県 zombies', '2019-03-12 16:41:44', '2019-03-12 16:41:44')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"7"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 6 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 7 LIMIT 1[0m
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.6ms)
+  [1m[35m (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('栃木県 kangaroos', '2019-03-12 16:41:44', '2019-03-12 16:41:44')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"8"}
+Completed 401 Unauthorized in 9ms (ActiveRecord: 0.0ms)
+  [1m[35m (42.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'earle_zboncak@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('長谷川', 'earle_zboncak@gmail.com', '$2a$04$kz2NLllOFeFMUMKFEvGJ/ufczNDUlrLrvE7v0SgYIVN1N4BLpYglm', '2019-03-12 16:41:44', '2019-03-12 16:41:44')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (25.9ms)[0m  [1m[34mSELECT COUNT(*) FROM `messages`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('宮城県 whales', '2019-03-12 16:41:44', '2019-03-12 16:41:44')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (2.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'diana_lockman@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('遠藤', 'diana_lockman@yahoo.com', '$2a$04$MsGbNMzbJ4skizd86eLvJOrQNN68S6b3EDtmB9iPmQF.cPgO3tj9e', '2019-03-12 16:41:44', '2019-03-12 16:41:44')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('群馬県 sorcerors', '2019-03-12 16:41:44', '2019-03-12 16:41:44')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (2.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (2.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'isreal_jakubowski@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('安藤', 'isreal_jakubowski@gmail.com', '$2a$04$KwvZyqajtd6LnIP8nm.ZQuklyAxo1IupOCUkvToRZ3poR1r.QIFwa', '2019-03-12 16:41:44', '2019-03-12 16:41:44')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `messages`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('鳥取県 bears', '2019-03-12 16:41:44', '2019-03-12 16:41:44')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"", "image"=>""}, "user_id"=>"9", "group_id"=>"11"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 9 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 11 LIMIT 1[0m
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.6ms)
+  [1m[35m (30.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'ling_schuster@hotmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('渡部', 'ling_schuster@hotmail.com', '$2a$04$88YnnBkwQKtjZ7vOHQUhFOEBb6CXod6IVkHyi9YCsuLSa3GIb518G', '2019-03-12 16:41:45', '2019-03-12 16:41:45')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('徳島県 prophets', '2019-03-12 16:41:45', '2019-03-12 16:41:45')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"", "image"=>""}, "user_id"=>"10", "group_id"=>"12"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 12 LIMIT 1[0m
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.6ms)
+  [1m[35m (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('埼玉県 frogs', '2019-03-12 16:41:45', '2019-03-12 16:41:45')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'waltraud_willms@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('中川', 'waltraud_willms@gmail.com', '$2a$04$UD9gjNWNQlkawPj1SthV0e38KvrqcKAomWuqvRq/PNp1hOcwz5SRK', '2019-03-12 16:41:45', '2019-03-12 16:41:45')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (2.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (48.1ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('鹿児島県 spiders', '2019-03-13 05:21:48', '2019-03-13 05:21:48')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"14"}
+Completed 401 Unauthorized in 23ms (ActiveRecord: 0.0ms)
+  [1m[35m (44.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('茨城県 foes', '2019-03-13 05:21:48', '2019-03-13 05:21:48')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"15"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (41.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('愛知県 ducks', '2019-03-13 05:21:49', '2019-03-13 05:21:49')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"16"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (2.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (2.8ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('愛媛県 vixens', '2019-03-13 05:21:49', '2019-03-13 05:21:49')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"17"}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (41.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('大分県 chickens', '2019-03-13 05:23:37', '2019-03-13 05:23:37')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"18"}
+Completed 401 Unauthorized in 18ms (ActiveRecord: 0.0ms)
+  [1m[35m (45.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('愛媛県 owls', '2019-03-13 05:23:37', '2019-03-13 05:23:37')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"19"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (41.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('福岡県 owls', '2019-03-13 05:23:37', '2019-03-13 05:23:37')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"20"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (2.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('宮城県 dwarves', '2019-03-13 05:23:37', '2019-03-13 05:23:37')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"21"}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (41.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('和歌山県 penguins', '2019-03-13 05:24:46', '2019-03-13 05:24:46')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"22"}
+Completed 401 Unauthorized in 23ms (ActiveRecord: 0.0ms)
+  [1m[35m (45.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (2.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('兵庫県 chickens', '2019-03-13 05:24:47', '2019-03-13 05:24:47')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"23"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (38.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('宮城県 prophets', '2019-03-13 05:24:47', '2019-03-13 05:24:47')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"24"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('鳥取県 whales', '2019-03-13 05:24:47', '2019-03-13 05:24:47')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"25"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (40.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('青森県 nemesis', '2019-03-13 05:25:39', '2019-03-13 05:25:39')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"26"}
+Completed 401 Unauthorized in 20ms (ActiveRecord: 0.0ms)
+  [1m[35m (31.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('群馬県 sheep', '2019-03-13 05:25:39', '2019-03-13 05:25:39')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"27"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (41.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('東京都 elves', '2019-03-13 05:25:40', '2019-03-13 05:25:40')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"28"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (2.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('新潟県 sons', '2019-03-13 05:25:40', '2019-03-13 05:25:40')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"29"}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (41.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('三重県 geese', '2019-03-13 06:31:31', '2019-03-13 06:31:31')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"30"}
+Completed 401 Unauthorized in 21ms (ActiveRecord: 0.0ms)
+  [1m[35m (44.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('三重県 lions', '2019-03-13 06:31:31', '2019-03-13 06:31:31')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"31"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (41.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('秋田県 chimeras', '2019-03-13 06:31:31', '2019-03-13 06:31:31')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"32"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (2.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('奈良県 witches', '2019-03-13 06:31:31', '2019-03-13 06:31:31')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"33"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (40.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (44.8ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'fred.boehm@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('大野', 'fred.boehm@yahoo.com', '$2a$04$NNVN5cir6m0YTymw904HXeRQpr/d50.XHmplnDV.ldHnd4NJkC4n.', '2019-03-13 06:31:31', '2019-03-13 06:31:31')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (44.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `messages`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('熊本県 ants', '2019-03-13 06:31:31', '2019-03-13 06:31:31')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"旧姓 廃墟 りゃくず はりい。", "image"=>"#<File:0x00007fb2fa969c90>"}, "user_id"=>"12", "group_id"=>"34"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 12 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.4ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 34 LIMIT 1[0m
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 1.0ms)
+  [1m[35m (41.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'dannie@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('藤原', 'dannie@gmail.com', '$2a$04$sp.PXeOl83uVDH86CMy9se.y1OCgksqgQUEiFMwaVcqynAm/vrB9C', '2019-03-13 06:31:31', '2019-03-13 06:31:31')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('宮城県 chimeras', '2019-03-13 06:31:31', '2019-03-13 06:31:31')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"げいひんかん じぎする いつ頃 ほうしゅう。", "image"=>"#<File:0x00007fb2f9574528>"}, "user_id"=>"13", "group_id"=>"35"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 13 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 35 LIMIT 1[0m
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.7ms)
+  [1m[35m (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'lucille@hotmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('岡田', 'lucille@hotmail.com', '$2a$04$8Ku40mm1ibuqaNlxU5hqZuPbzdd4230IRdiIcMW7TnHVltES25wn6', '2019-03-13 06:31:31', '2019-03-13 06:31:31')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `messages`[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('熊本県 sorcerors', '2019-03-13 06:31:31', '2019-03-13 06:31:31')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"", "image"=>""}, "user_id"=>"14", "group_id"=>"36"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 14 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 36 LIMIT 1[0m
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 1.1ms)
+  [1m[35m (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'ollie.hammes@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('野村', 'ollie.hammes@yahoo.com', '$2a$04$E8Tw.jnFp7T1nhmWQMaSb..grZHi9fxYDlDMjkqA5lh0yt459Yinq', '2019-03-13 06:31:31', '2019-03-13 06:31:31')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('埼玉県 birds', '2019-03-13 06:31:31', '2019-03-13 06:31:31')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"", "image"=>""}, "user_id"=>"15", "group_id"=>"37"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 15 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 37 LIMIT 1[0m
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.6ms)
+  [1m[35m (2.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('兵庫県 bears', '2019-03-13 06:31:31', '2019-03-13 06:31:31')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'rico.muller@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('伊藤', 'rico.muller@yahoo.com', '$2a$04$6ytk1t9.dEpsBbJTjRjTLe1Vw7AXoyc9gWjBbUcSH2Qq02FB/vvZG', '2019-03-13 06:31:31', '2019-03-13 06:31:31')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"りゃくず ごじゅう あれる 都合。", "image"=>"#<File:0x00007fb2f7d58ca0>"}, "user_id"=>"16", "group_id"=>"38"}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (2.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('佐賀県 worshipers', '2019-03-13 06:34:19', '2019-03-13 06:34:19')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"39"}
+Completed 401 Unauthorized in 23ms (ActiveRecord: 0.0ms)
+  [1m[35m (40.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('山形県 chickens', '2019-03-13 06:34:19', '2019-03-13 06:34:19')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"40"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (38.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('鹿児島県 prophets', '2019-03-13 06:34:19', '2019-03-13 06:34:19')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"41"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (2.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('島根県 ogres', '2019-03-13 06:34:19', '2019-03-13 06:34:19')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"42"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (40.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'claude_kshlerin@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('太田', 'claude_kshlerin@yahoo.com', '$2a$04$ZvoJ4s4Oqj4RsDuEu0lZh..sIzxPBZ6hItYahOjgIBvFrWbacIi72', '2019-03-13 06:34:19', '2019-03-13 06:34:19')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `messages`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('群馬県 people', '2019-03-13 06:34:19', '2019-03-13 06:34:19')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"きょうはんしゃ 馬鹿馬鹿しい 十台 弱虫。", "image"=>"#<File:0x00007f90594871f0>"}, "user_id"=>"17", "group_id"=>"43"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 17 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 43 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 17 LIMIT 1[0m
+  [1m[35mSQL (43.7ms)[0m  [1m[32mINSERT INTO `messages` (`content`, `group_id`, `user_id`, `created_at`, `updated_at`, `image`) VALUES ('きょうはんしゃ 馬鹿馬鹿しい 十台 弱虫。', 43, 17, '2019-03-13 06:34:19', '2019-03-13 06:34:19', NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/groups/43/messages
+Completed 302 Found in 122ms (ActiveRecord: 46.1ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `messages`[0m
+  [1m[35m (2.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'karoline@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('上野', 'karoline@gmail.com', '$2a$04$uttp0CF1C8eKJ7qIqVcph.oS2oMS52Qrpyj2TdiBPyNKbqGi.o2ym', '2019-03-13 06:34:19', '2019-03-13 06:34:19')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('東京都 elephants', '2019-03-13 06:34:19', '2019-03-13 06:34:19')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"果樹 たいこうする ことばつき ふかさ。", "image"=>"#<File:0x00007f905b578d78>"}, "user_id"=>"18", "group_id"=>"44"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 18 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.8ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 44 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 18 LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `messages` (`content`, `group_id`, `user_id`, `created_at`, `updated_at`, `image`) VALUES ('果樹 たいこうする ことばつき ふかさ。', 44, 18, '2019-03-13 06:34:19', '2019-03-13 06:34:19', NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/groups/44/messages
+Completed 302 Found in 17ms (ActiveRecord: 2.8ms)
+  [1m[35m (1.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'tosha@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('加藤', 'tosha@yahoo.com', '$2a$04$ItqwU9D44Ipzp/rb/SNTeOs.h/JS9Ot0hIvq1qii3hArsj2AIPrLe', '2019-03-13 06:34:19', '2019-03-13 06:34:19')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `messages`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('京都府 nemesis', '2019-03-13 06:34:19', '2019-03-13 06:34:19')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"", "image"=>""}, "user_id"=>"19", "group_id"=>"45"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 19 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 45 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 19 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendering messages/index.html.haml within layouts/application
+  Template rendering was prevented by rspec-rails. Use `render_views` to verify rendered view contents if necessary.
+  Rendered messages/index.html.haml within layouts/application (0.5ms)
+  Template rendering was prevented by rspec-rails. Use `render_views` to verify rendered view contents if necessary.
+Completed 200 OK in 37ms (Views: 28.1ms | ActiveRecord: 1.2ms)
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `messages`[0m
+  [1m[35m (41.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'vincent@hotmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('今井', 'vincent@hotmail.com', '$2a$04$lO/ulsIdeuHs40x3vHOAie.PnRxYOyuE3Pb3qp1EtjnKv7LDkozLe', '2019-03-13 06:34:19', '2019-03-13 06:34:19')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('秋田県 goats', '2019-03-13 06:34:19', '2019-03-13 06:34:19')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"", "image"=>""}, "user_id"=>"20", "group_id"=>"46"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 20 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 46 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 20 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendering messages/index.html.haml within layouts/application
+  Template rendering was prevented by rspec-rails. Use `render_views` to verify rendered view contents if necessary.
+  Rendered messages/index.html.haml within layouts/application (0.3ms)
+  Template rendering was prevented by rspec-rails. Use `render_views` to verify rendered view contents if necessary.
+Completed 200 OK in 10ms (Views: 1.1ms | ActiveRecord: 1.3ms)
+  [1m[35m (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('島根県 ogres', '2019-03-13 06:34:20', '2019-03-13 06:34:20')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'roman@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('菅原', 'roman@yahoo.com', '$2a$04$Jwv7vQf0039GDuhqDu4rIOPI89yx7Sr..lPZuRpGRnHNxjAwmM6wG', '2019-03-13 06:34:20', '2019-03-13 06:34:20')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"地面 馬鹿馬鹿しい あらす 当て字。", "image"=>"#<File:0x00007f905975e590>"}, "user_id"=>"21", "group_id"=>"47"}
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms)
+  [1m[35m (2.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('新潟県 gooses', '2019-03-13 06:53:22', '2019-03-13 06:53:22')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"48"}
+Completed 401 Unauthorized in 30ms (ActiveRecord: 0.0ms)
+  [1m[35m (45.1ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('岐阜県 sorcerors', '2019-03-13 06:53:23', '2019-03-13 06:53:23')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"49"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (41.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('沖縄県 griffins', '2019-03-13 06:53:23', '2019-03-13 06:53:23')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"50"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (2.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('香川県 dogs', '2019-03-13 06:53:23', '2019-03-13 06:53:23')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#index as HTML
+  Parameters: {"group_id"=>"51"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (40.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'lamont@hotmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('安藤', 'lamont@hotmail.com', '$2a$04$Ugyj6/nC5WlnkHxfI0ZAs.6nrrC11Phobc3ZaMvV8N3iqed6.PCLa', '2019-03-13 06:53:23', '2019-03-13 06:53:23')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `messages`[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('佐賀県 worshipers', '2019-03-13 06:53:23', '2019-03-13 06:53:23')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"とうき ごふく 杏 脱税。", "image"=>"#<File:0x00007fef545d9328>"}, "user_id"=>"22", "group_id"=>"52"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 22 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 52 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 22 LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `messages` (`content`, `group_id`, `user_id`, `created_at`, `updated_at`, `image`) VALUES ('とうき ごふく 杏 脱税。', 52, 22, '2019-03-13 06:53:23', '2019-03-13 06:53:23', NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/groups/52/messages
+Completed 302 Found in 76ms (ActiveRecord: 2.5ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `messages`[0m
+  [1m[35m (40.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'geoffrey@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('岩崎', 'geoffrey@yahoo.com', '$2a$04$Y81pXi6JDXS849bl0lvYvuYcdFDH92kMa.AohDJOvXkAiZf6CXaUC', '2019-03-13 06:53:23', '2019-03-13 06:53:23')[0m
+  [1m[35m (0.3ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('鳥取県 buffalo', '2019-03-13 06:53:23', '2019-03-13 06:53:23')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"人口 やしなう 漠然 かちゅう。", "image"=>"#<File:0x00007fef557116e0>"}, "user_id"=>"23", "group_id"=>"53"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 23 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.7ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 53 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 23 LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `messages` (`content`, `group_id`, `user_id`, `created_at`, `updated_at`, `image`) VALUES ('人口 やしなう 漠然 かちゅう。', 53, 23, '2019-03-13 06:53:23', '2019-03-13 06:53:23', NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://test.host/groups/53/messages
+Completed 302 Found in 12ms (ActiveRecord: 1.9ms)
+  [1m[35m (1.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'jasper@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('斉藤', 'jasper@gmail.com', '$2a$04$JD1V7iRQKCJRHYRi8ZYFjux4PxLVMt/TSzXbJiYEShRwYMdwPKb7S', '2019-03-13 06:53:23', '2019-03-13 06:53:23')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM `messages`[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('奈良県 wolves', '2019-03-13 06:53:23', '2019-03-13 06:53:23')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"", "image"=>""}, "user_id"=>"24", "group_id"=>"54"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 24 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 54 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 24 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendering messages/index.html.haml within layouts/application
+  Template rendering was prevented by rspec-rails. Use `render_views` to verify rendered view contents if necessary.
+  Rendered messages/index.html.haml within layouts/application (0.4ms)
+  Template rendering was prevented by rspec-rails. Use `render_views` to verify rendered view contents if necessary.
+Completed 200 OK in 42ms (Views: 32.3ms | ActiveRecord: 1.3ms)
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM `messages`[0m
+  [1m[35m (43.4ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'eden@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('藤田', 'eden@yahoo.com', '$2a$04$2Dg1kTpdew/AxdzHO95o3e1XAJO12jSCjp987eb826EhnsZH./l8O', '2019-03-13 06:53:23', '2019-03-13 06:53:23')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('山口県 pigs', '2019-03-13 06:53:23', '2019-03-13 06:53:23')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"", "image"=>""}, "user_id"=>"25", "group_id"=>"55"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 25 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT  `groups`.* FROM `groups` WHERE `groups`.`id` = 55 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 25 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendering messages/index.html.haml within layouts/application
+  Template rendering was prevented by rspec-rails. Use `render_views` to verify rendered view contents if necessary.
+  Rendered messages/index.html.haml within layouts/application (0.3ms)
+  Template rendering was prevented by rspec-rails. Use `render_views` to verify rendered view contents if necessary.
+Completed 200 OK in 10ms (Views: 1.2ms | ActiveRecord: 1.4ms)
+  [1m[35m (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO `groups` (`name`, `created_at`, `updated_at`) VALUES ('京都府 chimeras', '2019-03-13 06:53:23', '2019-03-13 06:53:23')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'bernadine@yahoo.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `encrypted_password`, `created_at`, `updated_at`) VALUES ('佐野', 'bernadine@yahoo.com', '$2a$04$KcTGgzMt4.KdIrbVxa79Cemsj21PUJqoKbYuDz5OTSxIwM5PvI5.2', '2019-03-13 06:53:23', '2019-03-13 06:53:23')[0m
+  [1m[35m (0.1ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by MessagesController#create as HTML
+  Parameters: {"message"=>{"content"=>"みさき ぐん 果樹 右翼。", "image"=>"#<File:0x00007fef552a65b0>"}, "user_id"=>"26", "group_id"=>"56"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+  [1m[35m (2.4ms)[0m  [1m[31mROLLBACK[0m
