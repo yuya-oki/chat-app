@@ -62,3 +62,8 @@ and the repository exists.
 
 Please make sure you have the correct access rights
 and the repository exists.
+  INFO ---------------------------------------------------------------------------
+  INFO START 2019-04-08 16:59:20 +0900 cap production deploy
+  INFO ---------------------------------------------------------------------------
+ DEBUG [d166c910] Running [ -d $HOME/.rbenv/versions/2.3.1 ] as ec2-user@13.113.148.172
+ DEBUG [d166c910] Command: [ -d $HOME/.rbenv/versions/2.3.1 ]
