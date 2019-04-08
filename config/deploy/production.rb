@@ -12,7 +12,7 @@ server '13.113.148.172',
     roles: %w{app db web},
     ssh_options: {
       port: 3000,
-      user: 'ec2-user'
+      user: 'ec2-user',
       keys: %w(~/.ssh/karupisu.pem),
       forward_agent: true
     }
