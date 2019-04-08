@@ -1,0 +1,64 @@
+# Logfile created on 2019-04-04 17:53:48 +0900 by logger.rb/61378
+  INFO ---------------------------------------------------------------------------
+  INFO START 2019-04-04 17:53:48 +0900 cap production deploy
+  INFO ---------------------------------------------------------------------------
+ DEBUG [14817478] Running [ -d $HOME/.rbenv/versions/2.3.1 ] as ec2-user@13.113.148.172
+ DEBUG [14817478] Command: [ -d $HOME/.rbenv/versions/2.3.1 ]
+ DEBUG [c22d72ec] Finished in 1.404 seconds with exit status 0 (successful).
+  INFO [7e32d0cd] Running /usr/bin/env mkdir -p /tmp as ec2-user@13.113.148.172
+ DEBUG [7e32d0cd] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.3.1" ; /usr/bin/env mkdir -p /tmp )
+  INFO [90f6e5e1] Finished in 0.212 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-ChatSpace-production-user.sh 0.0%
+  INFO Uploading /tmp/git-ssh-ChatSpace-production-user.sh 100.0%
+  INFO [4f4e7100] Running /usr/bin/env chmod 700 /tmp/git-ssh-ChatSpace-production-user.sh as ec2-user@13.113.148.172
+ DEBUG [4f4e7100] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.3.1" ; /usr/bin/env chmod 700 /tmp/git-ssh-ChatSpace-production-user.sh )
+  INFO [36ec599a] Finished in 0.225 seconds with exit status 0 (successful).
+  INFO [538913f1] Running /usr/bin/env git ls-remote git@example.com:yuya-oki/chat-app.git HEAD as ec2-user@13.113.148.172
+ DEBUG [538913f1] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.3.1" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-ChatSpace-production-user.sh" ; /usr/bin/env git ls-remote git@example.com:yuya-oki/chat-app.git HEAD )
+ DEBUG [f8e61372] 	ssh: connect to host example.com port 22: Network is unreachable
+ DEBUG [f8e61372] 	fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+  INFO ---------------------------------------------------------------------------
+  INFO START 2019-04-08 16:39:42 +0900 cap production deploy
+  INFO ---------------------------------------------------------------------------
+ DEBUG [d6464b98] Running [ -d $HOME/.rbenv/versions/2.3.1 ] as ec2-user@13.113.148.172
+ DEBUG [d6464b98] Command: [ -d $HOME/.rbenv/versions/2.3.1 ]
+ DEBUG [634ee35d] Finished in 0.337 seconds with exit status 0 (successful).
+  INFO [8df7f3b0] Running /usr/bin/env mkdir -p /tmp as ec2-user@13.113.148.172
+ DEBUG [8df7f3b0] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.3.1" ; /usr/bin/env mkdir -p /tmp )
+  INFO [dfa6f67d] Finished in 0.088 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-ChatSpace-production-user.sh 0.0%
+  INFO Uploading /tmp/git-ssh-ChatSpace-production-user.sh 100.0%
+  INFO [5ae46612] Running /usr/bin/env chmod 700 /tmp/git-ssh-ChatSpace-production-user.sh as ec2-user@13.113.148.172
+ DEBUG [5ae46612] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.3.1" ; /usr/bin/env chmod 700 /tmp/git-ssh-ChatSpace-production-user.sh )
+  INFO [b859c88f] Finished in 0.096 seconds with exit status 0 (successful).
+  INFO [0bd7dc62] Running /usr/bin/env git ls-remote git@example.com:yuya-oki/chat-app.git HEAD as ec2-user@13.113.148.172
+ DEBUG [0bd7dc62] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.3.1" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-ChatSpace-production-user.sh" ; /usr/bin/env git ls-remote git@example.com:yuya-oki/chat-app.git HEAD )
+ DEBUG [e87c0175] 	ssh: connect to host example.com port 22: Network is unreachable
+ DEBUG [e87c0175] 	fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+  INFO ---------------------------------------------------------------------------
+  INFO START 2019-04-08 16:49:13 +0900 cap production deploy
+  INFO ---------------------------------------------------------------------------
+ DEBUG [eb6405a5] Running [ -d $HOME/.rbenv/versions/2.3.1 ] as ec2-user@13.113.148.172
+ DEBUG [eb6405a5] Command: [ -d $HOME/.rbenv/versions/2.3.1 ]
+ DEBUG [49fc7fab] Finished in 0.263 seconds with exit status 0 (successful).
+  INFO [5f38ab07] Running /usr/bin/env mkdir -p /tmp as ec2-user@13.113.148.172
+ DEBUG [5f38ab07] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.3.1" ; /usr/bin/env mkdir -p /tmp )
+  INFO [a866b426] Finished in 0.089 seconds with exit status 0 (successful).
+ DEBUG Uploading /tmp/git-ssh-ChatSpace-production-user.sh 0.0%
+  INFO Uploading /tmp/git-ssh-ChatSpace-production-user.sh 100.0%
+  INFO [beee0a5a] Running /usr/bin/env chmod 700 /tmp/git-ssh-ChatSpace-production-user.sh as ec2-user@13.113.148.172
+ DEBUG [beee0a5a] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.3.1" ; /usr/bin/env chmod 700 /tmp/git-ssh-ChatSpace-production-user.sh )
+  INFO [170ea690] Finished in 0.098 seconds with exit status 0 (successful).
+  INFO [cca3429e] Running /usr/bin/env git ls-remote git@example.com:yuya-oki/chat-app.git HEAD as ec2-user@13.113.148.172
+ DEBUG [cca3429e] Command: ( export RBENV_ROOT="$HOME/.rbenv" RBENV_VERSION="2.3.1" GIT_ASKPASS="/bin/echo" GIT_SSH="/tmp/git-ssh-ChatSpace-production-user.sh" ; /usr/bin/env git ls-remote git@example.com:yuya-oki/chat-app.git HEAD )
+ DEBUG [d2e24fa5] 	ssh: connect to host example.com port 22: Network is unreachable
+ DEBUG [d2e24fa5] 	fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
